@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@assets': resolve(__dirname, 'assets/index.ts'),
-      '@components': resolve(__dirname, 'components/index.ts'),
-      '@pages': resolve(__dirname, 'pages/index.ts'),
-      '@hooks': resolve(__dirname, 'hooks/index.ts'),
+      '@assets': resolve(__dirname, 'src/assets/index.ts'),
+      '@components': resolve(__dirname, 'src/components/index.ts'),
+      '@pages': resolve(__dirname, 'src/pages/index.ts'),
+      '@hooks': resolve(__dirname, 'src/hooks/index.ts'),
     }
   }
 })
