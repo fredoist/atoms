@@ -1,0 +1,8 @@
+{
+    "app_id": "atoms-backend-us-east-1-amlbf",
+    "config_version": 20210101,
+    "name": "atoms-backend-us-east-1",
+    "location": "US-VA",
+    "provider_region": "aws-us-east-1",
+    "deployment_model": "LOCAL"
+}
