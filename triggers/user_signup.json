@@ -1,0 +1,10 @@
+{
+  "name": "save_user_data",
+  "type": "AUTHENTICATION",
+  "config": {
+    "operation_type": "CREATE",
+    "providers": ["custom-function"]
+  },
+  "function_name": "save_user_data",
+  "disabled": false
+}

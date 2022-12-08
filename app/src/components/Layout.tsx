@@ -15,7 +15,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {user?.isLoggedIn ? (
             <details role="list" className="relative group">
               <summary className="hover:text-forest-green cursor-pointer list-none flex items-center gap-1">
-                {user?.profile.name}
+                <img
+                  src={user.customData.avatar_url as string}
+                  alt={user.profile.name}
+                  className="w-6 h-6 rounded-full"
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -32,7 +36,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="absolute right-0 translate-y-1 z-10 border border-evergreen bg-white w-28 py-2 rounded-xl">
                 <li>
                   <a
-                    href={`/@${user.profile.name}`}
+                    href={`/@${user.customData.username}`}
                     className="py-px px-4 block text-right hover:bg-forest-green/10 hover:text-evergreen"
                   >
                     Profile

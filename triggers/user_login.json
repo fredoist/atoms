@@ -1,0 +1,10 @@
+{
+  "name": "sync_user_data",
+  "type": "AUTHENTICATION",
+  "config": {
+    "operation_type": "LOGIN",
+    "providers": ["custom-function"]
+  },
+  "function_name": "sync_user_data",
+  "disabled": false
+}
