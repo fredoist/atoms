@@ -20,7 +20,7 @@
       "@assets": ["assets"],
       "@components": ["components/index"],
       "@hooks": ["hooks/index"],
-      "@pages": ["pages/index"],
+      "@pages": ["pages/index"]
     }
   },
   "include": ["src"],
