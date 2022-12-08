@@ -35,12 +35,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </summary>
               <ul className="absolute right-0 translate-y-1 z-10 border border-evergreen bg-white w-28 py-2 rounded-xl">
                 <li>
-                  <a
-                    href={`/@${user.customData.username}`}
+                  <Link
+                    to={`/@${user.customData.username}`}
                     className="py-px px-4 block text-right hover:bg-forest-green/10 hover:text-evergreen"
                   >
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
