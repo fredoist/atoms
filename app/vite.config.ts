@@ -11,6 +11,7 @@ export default defineConfig({
       '@components': resolve(__dirname, 'src/components/index.ts'),
       '@pages': resolve(__dirname, 'src/pages/index.ts'),
       '@hooks': resolve(__dirname, 'src/hooks/index.ts'),
-    }
-  }
-})
+      '@config': resolve(__dirname, 'src/config.ts'),
+    },
+  },
+});

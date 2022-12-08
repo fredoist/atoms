@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
 import * as Realm from 'realm-web';
+import { useEffect } from 'react';
 import { entity } from 'simpler-state';
+import { app } from '@config';
 
-const app = new Realm.App({ id: import.meta.env.VITE_REALM_APP_ID as string });
 const client_id = import.meta.env.VITE_GITHUB_CLIENT as string;
 const user = entity<Realm.User | null>(null);
 
