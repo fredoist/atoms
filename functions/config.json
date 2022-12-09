@@ -1,32 +1,47 @@
 [
   {
-    "name": "get_user",
+    "name": "save_component",
     "private": false,
-    "disable_arg_logs": true,
-    "run_as_system": true
+    "run_as_system": true,
+    "disable_arg_logs": true
+  },
+  {
+    "name": "save_user_data",
+    "private": false,
+    "disable_arg_logs": true
+  },
+  {
+    "name": "sync_user_data",
+    "private": false,
+    "disable_arg_logs": true
   },
   {
     "name": "create_component",
     "private": false,
-    "disable_arg_logs": true,
-    "run_as_system": true
-  },
-  {
-    "name": "save_component",
-    "private": false,
-    "disable_arg_logs": true,
-    "run_as_system": true
+    "run_as_system": true,
+    "disable_arg_logs": true
   },
   {
     "name": "get_component",
     "private": false,
-    "disable_arg_logs": true,
-    "run_as_system": true
+    "run_as_system": true,
+    "disable_arg_logs": true
   },
   {
     "name": "get_components",
     "private": false,
-    "disable_arg_logs": true,
-    "run_as_system": true
+    "run_as_system": true,
+    "disable_arg_logs": true
+  },
+  {
+    "name": "get_user",
+    "private": false,
+    "run_as_system": true,
+    "disable_arg_logs": true
+  },
+  {
+    "name": "github_authentication",
+    "private": false,
+    "disable_arg_logs": true
   }
 ]

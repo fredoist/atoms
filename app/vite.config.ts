@@ -14,4 +14,7 @@ export default defineConfig({
       "@config": resolve(__dirname, "src/config.ts"),
     },
   },
+  build: {
+    outDir: "../hosting/files",
+  },
 });

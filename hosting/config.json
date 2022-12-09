@@ -1,0 +1,7 @@
+{
+    "enabled": true,
+    "custom_domain": "xfreddy.xyz",
+    "app_default_domain": "atoms-backend-us-east-1-amlbf.mongodbstitch.com",
+    "default_error_path": "/index.html",
+    "default_error_code": "200"
+}

@@ -5,6 +5,12 @@
     "operation_type": "CREATE",
     "providers": ["custom-function"]
   },
-  "function_name": "save_user_data",
-  "disabled": false
+  "disabled": false,
+  "event_processors": {
+    "FUNCTION": {
+      "config": {
+        "function_name": "save_user_data"
+      }
+    }
+  }
 }
