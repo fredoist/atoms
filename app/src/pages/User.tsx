@@ -1,8 +1,8 @@
-import { Sandpack } from '@codesandbox/sandpack-react';
-import { sandpackDark } from '@codesandbox/sandpack-themes';
-import { api } from '@config';
-import { useEffect, useState } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Sandpack } from "@codesandbox/sandpack-react";
+import { sandpackDark } from "@codesandbox/sandpack-themes";
+import { api } from "@config";
+import { useEffect, useState } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 
 export default function User() {
   const [user, setUser] = useState<any>(null);
@@ -50,8 +50,17 @@ export default function User() {
       <section className="py-24 text-evergreen">
         {components?.map((component: any) => (
           <div key={component.name}>
-            <Link to={`/@${username}/${component.name}`} className="text-forest-green inline-block mb-5">{component.name} ↗</Link>
-            <Sandpack template='react' theme={sandpackDark} files={{'App.js': component.code }} />
+            <Link
+              to={`/@${username}/${component.name}`}
+              className="text-forest-green inline-block mb-5"
+            >
+              {component.name} ↗
+            </Link>
+            <Sandpack
+              template="react"
+              theme={sandpackDark}
+              files={{ "App.js": component.code }}
+            />
           </div>
         ))}
       </section>

@@ -1,6 +1,6 @@
-import { useAuth } from '@hooks';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useAuth } from "@hooks";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
@@ -14,7 +14,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Link>
           {user?.isLoggedIn ? (
             <div className="flex items-center gap-x-4">
-              <Link to="/create" className="text-forest-green hover:bg-forest-green/10 py-px px-2 rounded-xl transition-colors">+ Create</Link>
+              <Link
+                to="/create"
+                className="text-forest-green hover:bg-forest-green/10 py-px px-2 rounded-xl transition-colors"
+              >
+                + Create
+              </Link>
               <details role="list" className="relative group">
                 <summary className="hover:text-forest-green cursor-pointer list-none flex items-center gap-1">
                   <img

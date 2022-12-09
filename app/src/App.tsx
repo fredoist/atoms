@@ -3,11 +3,11 @@ import {
   Routes,
   Route,
   Outlet,
-} from 'react-router-dom';
-import { Auth, Create, Home, User, UserComponent } from '@pages';
-import { Layout } from '@components';
-import { SandpackProvider } from '@codesandbox/sandpack-react';
-import { sandpackDark } from '@codesandbox/sandpack-themes';
+} from "react-router-dom";
+import { Auth, Create, Home, User, UserComponent } from "@pages";
+import { Layout } from "@components";
+import { SandpackProvider } from "@codesandbox/sandpack-react";
+import { sandpackDark } from "@codesandbox/sandpack-themes";
 
 export default function App() {
   return (

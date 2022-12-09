@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useAuth } from '@hooks';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useAuth } from "@hooks";
+import { useNavigate } from "react-router-dom";
 
 type Error = {
   type: string;
@@ -15,10 +15,10 @@ export default function Callback() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (window.location.search.includes('error')) {
+    if (window.location.search.includes("error")) {
       const URI = new URLSearchParams(window.location.search);
-      const type = URI.get('error') as string;
-      const description = URI.get('error_description') as string;
+      const type = URI.get("error") as string;
+      const description = URI.get("error_description") as string;
       setError({ type, description });
     }
   }, [window.location.search]);
@@ -26,20 +26,20 @@ export default function Callback() {
   useEffect(() => {
     async function loginCallback() {
       const code = new URLSearchParams(window.location.search).get(
-        'code'
+        "code"
       ) as string;
       await login(code);
       setWaiting(false);
-      navigate('/');
+      navigate("/");
     }
-    if (window.location.search.includes('code')) {
+    if (window.location.search.includes("code")) {
       setWaiting(true);
       loginCallback();
     }
   }, [window.location.search]);
 
   useEffect(() => {
-    if (!user?.isLoggedIn && window.location.search === '') {
+    if (!user?.isLoggedIn && window.location.search === "") {
       window.location.href = redirect_uri as string;
     }
   }, [user, window.location.search]);

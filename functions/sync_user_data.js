@@ -2,7 +2,7 @@ exports = async function onNewCustomFunctionUser({ user }) {
   const internalId = user.id;
 
   const customFunctionIdentity = user.identities.find((id) => {
-    return id.provider_type === 'custom-function';
+    return id.provider_type === "custom-function";
   });
   const externalId = customFunctionIdentity.id;
 
@@ -16,13 +16,13 @@ exports = async function onNewCustomFunctionUser({ user }) {
     .get({
       url: `https://api.github.com/user/${externalId}`,
       headers: {
-        Accept: ['application/vnd.github+json'],
+        Accept: ["application/vnd.github+json"],
       },
     })
     .then((res) => JSON.parse(res.body.text()));
 
-  const mdb = context.services.get('mongodb-atlas');
-  const users = mdb.db('app').collection('users');
+  const mdb = context.services.get("mongodb-atlas");
+  const users = mdb.db("app").collection("users");
   const query = { user_id: internalId };
   const update = {
     $set: {

@@ -3,9 +3,9 @@ exports = async (request, response) => {
 
   try {
     const user = await context.services
-      .get('mongodb-atlas')
-      .db('app')
-      .collection('users')
+      .get("mongodb-atlas")
+      .db("app")
+      .collection("users")
       .findOne({ username });
 
     response.setStatusCode(200);

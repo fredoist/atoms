@@ -1,7 +1,7 @@
-import * as Realm from 'realm-web';
-import { useEffect } from 'react';
-import { entity } from 'simpler-state';
-import { app } from '@config';
+import * as Realm from "realm-web";
+import { useEffect } from "react";
+import { entity } from "simpler-state";
+import { app } from "@config";
 
 const client_id = import.meta.env.VITE_GITHUB_CLIENT as string;
 const user = entity<Realm.User | null>(null);
@@ -25,9 +25,9 @@ export default function useAuth() {
   };
 
   const redirect = () => {
-    const uri = new URL('/login/oauth/authorize', 'https://github.com');
-    uri.searchParams.set('client_id', client_id);
-    uri.searchParams.set('scope', 'read:user');
+    const uri = new URL("/login/oauth/authorize", "https://github.com");
+    uri.searchParams.set("client_id", client_id);
+    uri.searchParams.set("scope", "read:user");
     return uri.toString();
   };
 

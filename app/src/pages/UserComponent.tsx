@@ -3,11 +3,11 @@ import {
   SandpackLayout,
   SandpackPreview,
   useActiveCode,
-} from '@codesandbox/sandpack-react';
-import { api, app } from '@config';
-import { useAuth } from '@hooks';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+} from "@codesandbox/sandpack-react";
+import { api, app } from "@config";
+import { useAuth } from "@hooks";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function UserComponent() {
   const { user } = useAuth();
@@ -16,17 +16,19 @@ export default function UserComponent() {
     username: string;
     component: string;
   }>();
-  const [name, setName] = useState('MyComponent');
+  const [name, setName] = useState("MyComponent");
   const [loading, setLoading] = useState(false);
   const isOwner = user?.customData.username === username;
 
   useEffect(() => {
     async function getComponent() {
       try {
-        const req = await fetch(`${api}/component?user_id=${user?.id}&name=${component}`);
+        const req = await fetch(
+          `${api}/component?user_id=${user?.id}&name=${component}`
+        );
         const data = await req.json();
         if (!data.error) {
-          console.log(data)
+          console.log(data);
           updateCode(data.code);
           setName(data.name);
         }
@@ -35,21 +37,18 @@ export default function UserComponent() {
       }
     }
     getComponent();
-  }, [user, component])
+  }, [user, component]);
 
   const saveComponent = async (code: string) => {
-    if(!isOwner) return;
+    if (!isOwner) return;
 
     try {
       setLoading(true);
-      console.log(component)
-      await app.currentUser?.functions.callFunction(
-        'save_component',
-        {
-          name: component,
-          code,
-        }
-      );
+      console.log(component);
+      await app.currentUser?.functions.callFunction("save_component", {
+        name: component,
+        code,
+      });
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -83,7 +82,7 @@ export default function UserComponent() {
               disabled={loading}
               className="inline-block uppercase leading-none py-2 px-3 rounded-lg bg-forest-green disabled:bg-forest-green/80 disabled:cursor-wait text-white hover:ring-4 hover:ring-forest-green/20"
             >
-              {isOwner ? 'Save' : 'Fork'}
+              {isOwner ? "Save" : "Fork"}
             </button>
           </div>
           <div className="[--sp-layout-height:28rem] [--sp-border-radius:0.75rem]">

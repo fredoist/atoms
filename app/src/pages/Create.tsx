@@ -3,29 +3,29 @@ import {
   SandpackLayout,
   SandpackPreview,
   useActiveCode,
-} from '@codesandbox/sandpack-react';
-import { app } from '@config';
-import { useAuth } from '@hooks';
-import React, { useState } from 'react';
+} from "@codesandbox/sandpack-react";
+import { app } from "@config";
+import { useAuth } from "@hooks";
+import React, { useState } from "react";
 
 export default function Create() {
-  const { user } = useAuth()
+  const { user } = useAuth();
   const { code } = useActiveCode();
-  const [name, setName] = useState('MyComponent');
+  const [name, setName] = useState("MyComponent");
   const [loading, setLoading] = useState(false);
 
   const saveComponent = async (code: string) => {
     try {
       setLoading(true);
       const { name: component } = await app.currentUser?.functions.callFunction(
-        'create_component',
+        "create_component",
         {
           name,
           code,
         }
       );
       setLoading(false);
-      history.pushState({}, '', `/@${user?.customData.username}/${component}`);
+      history.pushState({}, "", `/@${user?.customData.username}/${component}`);
     } catch (error) {
       console.error(error);
     }
