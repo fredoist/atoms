@@ -1,8 +1,8 @@
-import { Sandpack } from '@codesandbox/sandpack-react';
-import { sandpackDark } from '@codesandbox/sandpack-themes';
-import { api } from '@config';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Sandpack } from "@codesandbox/sandpack-react";
+import { sandpackDark } from "@codesandbox/sandpack-themes";
+import { api } from "@config";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [components, setComponents] = useState<[]>([]);
@@ -48,7 +48,7 @@ export default function Home() {
             <Sandpack
               template="react"
               theme={sandpackDark}
-              files={{ 'App.js': component.code }}
+              files={{ "App.js": component.code }}
             />
           </div>
         ))}

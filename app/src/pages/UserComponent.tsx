@@ -28,7 +28,6 @@ export default function UserComponent() {
         );
         const data = await req.json();
         if (!data.error) {
-          console.log(data);
           updateCode(data.code);
           setName(data.name);
         }
@@ -44,20 +43,20 @@ export default function UserComponent() {
 
     try {
       setLoading(true);
-      console.log(component);
       await app.currentUser?.functions.callFunction("save_component", {
-        name: component,
+        name,
         code,
       });
       setLoading(false);
+      history.replaceState(null, "", `/@${username}/${name}`);
     } catch (error) {
       console.error(error);
       setLoading(false);
     }
   };
 
-  const updateComponentName = (e: React.FormEvent<HTMLHeadingElement>) => {
-    const name = e.currentTarget.textContent;
+  const updateComponentName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value;
     if (name) {
       setName(name);
     }
@@ -67,15 +66,13 @@ export default function UserComponent() {
     <>
       <section className="px-4 py-12">
         <div className="mx-auto max-w-5xl text-slate-blue">
-          <div className="flex items-center justify-between my-4">
-            <h3
-              className="text-lg focus:outline-none"
-              onInput={updateComponentName}
-              contentEditable
-              suppressContentEditableWarning
-            >
-              {name}
-            </h3>
+          <div className="flex items-center justify-between my-4 gap-4">
+            <input
+              className="text-lg focus:outline-none bg-white flex-1"
+              value={name}
+              disabled={!isOwner}
+              onChange={updateComponentName}
+            />
             <button
               type="button"
               onClick={() => saveComponent(code)}
