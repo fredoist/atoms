@@ -1,5 +1,10 @@
 [
   {
+    "name": "github_authentication",
+    "private": false,
+    "disable_arg_logs": true
+  },
+  {
     "name": "save_component",
     "private": false,
     "run_as_system": true,
@@ -40,8 +45,9 @@
     "disable_arg_logs": true
   },
   {
-    "name": "github_authentication",
+    "name": "search",
     "private": false,
+    "run_as_system": true,
     "disable_arg_logs": true
   }
 ]

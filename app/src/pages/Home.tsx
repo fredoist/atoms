@@ -1,11 +1,12 @@
-import { Sandpack } from "@codesandbox/sandpack-react";
-import { sandpackDark } from "@codesandbox/sandpack-themes";
-import { api } from "@config";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Sandpack } from '@codesandbox/sandpack-react';
+import { sandpackDark } from '@codesandbox/sandpack-themes';
+import { api } from '@config';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const [components, setComponents] = useState<[]>([]);
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
     async function getComponents() {
@@ -20,17 +21,35 @@ export default function Home() {
     getComponents();
   }, []);
 
+  const searchComponents = async (e: any) => {
+    const value = e.target.value;
+    setSearch(value);
+    history.pushState(null, '', `/?q=${value}`);
+    try {
+      const req = await fetch(`${api}/search?q=${value}`);
+      const data = await req.json();
+      console.log(data);
+      if (data.length > 0) {
+        setComponents(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <section className="px-4 py-24">
         <div className="mx-auto max-w-2xl">
           <h1 className="text-3xl lg:text-5xl text-center mb-12">
-            Create, share, and collab on your React components
+            Create and share your React components
           </h1>
-          <form>
+          <form onSubmit={e => e.preventDefault()}>
             <input
               type="search"
-              placeholder="Search for a component"
+              placeholder="Search for a component or username"
+              onChange={searchComponents}
+              value={search}
               className="w-full p-3 border border-black focus:outline-none focus:ring-4 focus:ring-forest-green/20 rounded-xl"
             />
           </form>
@@ -48,7 +67,7 @@ export default function Home() {
             <Sandpack
               template="react"
               theme={sandpackDark}
-              files={{ "App.js": component.code }}
+              files={{ 'App.js': component.code }}
             />
           </div>
         ))}
