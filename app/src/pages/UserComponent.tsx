@@ -24,7 +24,7 @@ export default function UserComponent() {
     async function getComponent() {
       try {
         const req = await fetch(
-          `${api}/component?user_id=${user?.id}&name=${component}`
+          `${api}/component?username=${username}&name=${component}`
         );
         const data = await req.json();
         if (!data.error) {
@@ -36,7 +36,7 @@ export default function UserComponent() {
       }
     }
     getComponent();
-  }, [user, component]);
+  }, [username, component]);
 
   const saveComponent = async (code: string) => {
     if (!isOwner) return;
