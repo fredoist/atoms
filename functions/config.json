@@ -10,5 +10,11 @@
     "private": false,
     "disable_arg_logs": true,
     "run_as_system": true
+  },
+  {
+    "name": "save_component",
+    "private": false,
+    "disable_arg_logs": true,
+    "run_as_system": true
   }
 ]

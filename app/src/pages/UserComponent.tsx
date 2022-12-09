@@ -6,28 +6,41 @@ import {
 } from '@codesandbox/sandpack-react';
 import { app } from '@config';
 import { useAuth } from '@hooks';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function UserComponent() {
   const { user } = useAuth();
-  const { code } = useActiveCode();
+  const { code, updateCode } = useActiveCode();
+  const { username, component } = useParams<{
+    username: string;
+    component: string;
+  }>();
   const [name, setName] = useState('MyComponent');
   const [loading, setLoading] = useState(false);
+  const isOwner = user?.customData.username === username;
+
+  useEffect(() => {
+    
+  }, [component])
 
   const saveComponent = async (code: string) => {
+    if(!isOwner) return;
+
     try {
       setLoading(true);
-      const { name: component } = await app.currentUser?.functions.callFunction(
-        'create_component',
+      console.log(component)
+      await app.currentUser?.functions.callFunction(
+        'save_component',
         {
-          name,
+          name: component,
           code,
         }
       );
       setLoading(false);
-      history.pushState({}, '', `/@${user?.customData.username}/${component}`);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -57,7 +70,7 @@ export default function UserComponent() {
               disabled={loading}
               className="inline-block uppercase leading-none py-2 px-3 rounded-lg bg-forest-green disabled:bg-forest-green/80 disabled:cursor-wait text-white hover:ring-4 hover:ring-forest-green/20"
             >
-              Publish
+              {isOwner ? 'Save' : 'Fork'}
             </button>
           </div>
           <div className="[--sp-layout-height:28rem] [--sp-border-radius:0.75rem]">

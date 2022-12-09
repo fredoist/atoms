@@ -5,7 +5,7 @@ exports = async (payload) => {
     throw new Error('Unauthorized');
   }
 
-  const { id } = user.custom_data;
+  const { user_id } = user.custom_data;
 
   try {
     const { insertedId } = await context.services
@@ -13,7 +13,7 @@ exports = async (payload) => {
       .db('app')
       .collection('components')
       .insertOne({
-        userId: id,
+        userId: user_id,
         name,
         code,
         createdAt: new Date(),
