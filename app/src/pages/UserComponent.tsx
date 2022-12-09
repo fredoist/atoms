@@ -4,7 +4,7 @@ import {
   SandpackPreview,
   useActiveCode,
 } from '@codesandbox/sandpack-react';
-import { app } from '@config';
+import { api, app } from '@config';
 import { useAuth } from '@hooks';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -21,8 +21,21 @@ export default function UserComponent() {
   const isOwner = user?.customData.username === username;
 
   useEffect(() => {
-    
-  }, [component])
+    async function getComponent() {
+      try {
+        const req = await fetch(`${api}/component?user_id=${user?.id}&name=${component}`);
+        const data = await req.json();
+        if (!data.error) {
+          console.log(data)
+          updateCode(data.code);
+          setName(data.name);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getComponent();
+  }, [user, component])
 
   const saveComponent = async (code: string) => {
     if(!isOwner) return;
@@ -62,7 +75,7 @@ export default function UserComponent() {
               contentEditable
               suppressContentEditableWarning
             >
-              MyComponent
+              {name}
             </h3>
             <button
               type="button"
