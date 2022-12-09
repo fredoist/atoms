@@ -8,8 +8,8 @@ import { app } from '@config';
 import { useAuth } from '@hooks';
 import React, { useState } from 'react';
 
-export default function Create() {
-  const { user } = useAuth()
+export default function UserComponent() {
+  const { user } = useAuth();
   const { code } = useActiveCode();
   const [name, setName] = useState('MyComponent');
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ export default function Create() {
   return (
     <>
       <section className="px-4 py-12">
-        <div className="mx-auto max-w-5xl text-slate-blue font-sans">
+        <div className="mx-auto max-w-5xl text-slate-blue">
           <div className="flex items-center justify-between my-4">
             <h3
               className="text-lg focus:outline-none"

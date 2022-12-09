@@ -35,7 +35,7 @@ export default function User() {
           alt={user.name}
           className="w-24 rounded-full"
         />
-        <h1 className="text-2xl">{user.name}</h1>
+        <h1 className="text-2xl text-evergreen font-sans">{user.name}</h1>
         <span className="text-forest-green">{user.bio}</span>
       </section>
     </>

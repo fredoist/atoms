@@ -1,5 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Auth, Create, Home, User } from '@pages';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from 'react-router-dom';
+import { Auth, Create, Home, User, UserComponent } from '@pages';
 import { Layout } from '@components';
 import { SandpackProvider } from '@codesandbox/sandpack-react';
 import { sandpackDark } from '@codesandbox/sandpack-themes';
@@ -13,15 +18,22 @@ export default function App() {
           <Route
             path="/create"
             element={
-              <SandpackProvider
-                template="react"
-                theme={sandpackDark}
-              >
+              <SandpackProvider template="react" theme={sandpackDark}>
                 <Create />
               </SandpackProvider>
             }
           />
-          <Route path="/@:username" element={<User />} />
+          <Route
+            path="/@:username"
+            element={
+              <SandpackProvider template="react" theme={sandpackDark}>
+                <Outlet />
+              </SandpackProvider>
+            }
+          >
+            <Route path="" element={<User />} />
+            <Route path=":component" element={<UserComponent />} />
+          </Route>
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </Layout>
