@@ -22,5 +22,11 @@
     "private": false,
     "disable_arg_logs": true,
     "run_as_system": true
+  },
+  {
+    "name": "get_components",
+    "private": false,
+    "disable_arg_logs": true,
+    "run_as_system": true
   }
 ]
