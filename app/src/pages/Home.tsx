@@ -1,4 +1,25 @@
+import { Sandpack } from '@codesandbox/sandpack-react';
+import { sandpackDark } from '@codesandbox/sandpack-themes';
+import { api } from '@config';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 export default function Home() {
+  const [components, setComponents] = useState<[]>([]);
+
+  useEffect(() => {
+    async function getComponents() {
+      try {
+        const req = await fetch(`${api}/components`);
+        const data = await req.json();
+        setComponents(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getComponents();
+  }, []);
+
   return (
     <>
       <section className="px-4 py-24">
@@ -14,6 +35,23 @@ export default function Home() {
             />
           </form>
         </div>
+      </section>
+      <section className="mx-auto max-w-5xl py-12">
+        {components?.map((component: any) => (
+          <div key={component.name}>
+            <Link
+              to={`/@${component.username}/${component.name}`}
+              className="text-forest-green inline-block mb-5"
+            >
+              {component.name} ↗
+            </Link>
+            <Sandpack
+              template="react"
+              theme={sandpackDark}
+              files={{ 'App.js': component.code }}
+            />
+          </div>
+        ))}
       </section>
     </>
   );

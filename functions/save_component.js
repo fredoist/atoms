@@ -5,7 +5,7 @@ exports = async (payload) => {
     throw new Error("Unauthorized");
   }
 
-  const { user_id } = user.custom_data;
+  const { user_id, username } = user.custom_data;
 
   try {
     const mdb = context.services.get("mongodb-atlas");
@@ -13,6 +13,7 @@ exports = async (payload) => {
     const query = { userId: user_id };
     const update = {
       $set: {
+        username,
         code,
         name,
         updated_at: new Date(),
