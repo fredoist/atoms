@@ -4,15 +4,29 @@ exports = async (request, response) => {
   const agg = [
     {
       $search: {
-        index: 'code',
-        text: {
-          query: q,
-          path: ['code', 'name', 'username'],
+        compound: {
+          should: [
+            {
+              autocomplete: {
+                path: "name",
+                query: q,
+              },
+            },
+            {
+              autocomplete: {
+                path: "username",
+                query: q,
+              },
+            },
+            {
+              autocomplete: {
+                path: "code",
+                query: q,
+              },
+            },
+          ],
         },
       },
-    },
-    {
-      $limit: 10,
     },
     {
       $project: {
@@ -25,13 +39,15 @@ exports = async (request, response) => {
   ];
 
   try {
-    const db = await context.services.get('mongodb-atlas').db('app');
-    const collection = db.collection('components');
-    const results = await collection.aggregate(agg).toArray();
+    const db = await context.services.get("mongodb-atlas").db("app");
+    const collection = db.collection("components");
+    const results = q
+      ? await collection.aggregate(agg).toArray()
+      : await collection.find().toArray();
 
     response.setStatusCode(200);
-    response.setBody(JSON.stringify(results))
-  } catch (e) {
+    response.setBody(JSON.stringify(results));
+  } catch (error) {
     response.setStatusCode(400);
     response.setBody(error.message);
   }
