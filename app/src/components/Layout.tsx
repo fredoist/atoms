@@ -1,9 +1,20 @@
 import { useAuth } from "@hooks";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
+
+  useEffect(() => {
+    function closeDropdown(e: MouseEvent) {
+      const target = e.target as HTMLElement;
+      if (target.closest("details")) return;
+      const details = document.querySelector("details[open]") as HTMLElement;
+      if (details) details.removeAttribute("open");
+    }
+    window.addEventListener("click", closeDropdown);
+    return () => window.removeEventListener("click", closeDropdown);
+  }, [])
 
   return (
     <>
