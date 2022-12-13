@@ -1,6 +1,5 @@
-import { Sandpack } from "@codesandbox/sandpack-react";
-import { sandpackDark } from "@codesandbox/sandpack-themes";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import SandpackEditor from './SandpackEditor';
 
 type ComponentCardProps = {
   name: string;
@@ -14,18 +13,16 @@ export default function ComponentCard({
   code,
 }: ComponentCardProps) {
   return (
-    <div key={name}>
-      <Link
-        to={`/@${username}/${name}`}
-        className="text-forest-green inline-block mb-5"
-      >
-        {name}
-      </Link>
-      <Sandpack
-        template="react"
-        theme={sandpackDark}
-        files={{ "App.js": code }}
-      />
+    <div key={name} className="border border-black rounded-xl overflow-hidden">
+      <SandpackEditor code={code} hideEditor={true} />
+      <div className="p-2 border-t border-black">
+        <Link
+          to={`/@${username}/${name}`}
+          className="text-forest-green inline-block hover:underline"
+        >
+          {name}
+        </Link>
+      </div>
     </div>
   );
 }

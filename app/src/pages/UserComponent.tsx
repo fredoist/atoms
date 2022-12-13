@@ -4,6 +4,7 @@ import {
   SandpackPreview,
   useActiveCode,
 } from "@codesandbox/sandpack-react";
+import { SandpackEditor } from '@components';
 import { api, app } from "@config";
 import { useAuth } from "@hooks";
 import React, { useEffect, useState } from "react";
@@ -11,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function UserComponent() {
   const { user } = useAuth();
-  const { code, updateCode } = useActiveCode();
+  const [code, setCode] = useState('');
   const { username, component } = useParams<{
     username: string;
     component: string;
@@ -28,7 +29,7 @@ export default function UserComponent() {
         );
         const data = await req.json();
         if (!data.error) {
-          updateCode(data.code);
+          setCode(data.code);
           setName(data.name);
         }
       } catch (error) {
@@ -82,15 +83,8 @@ export default function UserComponent() {
               {isOwner ? "Save" : "Fork"}
             </button>
           </div>
-          <div className="[--sp-layout-height:28rem] [--sp-border-radius:0.75rem]">
-            <SandpackLayout>
-              <SandpackCodeEditor
-                showRunButton={false}
-                showLineNumbers={false}
-                showTabs={false}
-              />
-              <SandpackPreview />
-            </SandpackLayout>
+          <div className="rounded-xl border border-black overflow-hidden">
+            <SandpackEditor code={code} />
           </div>
         </div>
       </section>

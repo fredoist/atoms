@@ -25,16 +25,7 @@ export default function App() {
           />
           <Route path="@:username">
             <Route path="" element={<User />} />
-            <Route
-              path=":component"
-              element={
-                <SandpackProvider template="react" theme={sandpackDark}>
-                  <Outlet />
-                </SandpackProvider>
-              }
-            >
-              <Route path="" element={<UserComponent />} />
-            </Route>
+            <Route path=":component" element={<UserComponent />} />
           </Route>
           <Route path="/auth" element={<Auth />} />
         </Routes>

@@ -19,7 +19,7 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="mx-auto max-w-5xl py-12 flex flex-col gap-4">
+      <section className="mx-auto max-w-5xl py-12 px-4 grid md:grid-cols-2 gap-8">
         {components.length > 0 ? (
           components.map(({ name, username, code }) => (
             <ComponentCard
